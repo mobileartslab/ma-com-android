@@ -1,4 +1,4 @@
-package com.carefirstpraxis.ma_com_android.ui.theme
+package com.mobileartslab.ma_com_android.ui.theme
 
 import android.app.Activity
 import android.os.Build
