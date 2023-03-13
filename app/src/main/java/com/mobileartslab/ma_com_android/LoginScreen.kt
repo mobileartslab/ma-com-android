@@ -1,17 +1,19 @@
 package com.mobileartslab.ma_com_android
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -31,9 +33,7 @@ fun LoginScreen(navController: NavHostController) {
   Box(modifier = Modifier.fillMaxSize()) {
     ClickableText(
       text = AnnotatedString("Sign up here"),
-      modifier = Modifier
-        .align(Alignment.BottomCenter)
-        .padding(20.dp),
+      modifier = Modifier.align(Alignment.BottomCenter).padding(20.dp),
       onClick = { navController.navigate(Routes.SignUp.route) },
       style = TextStyle(
         fontSize = 14.sp,
@@ -52,9 +52,17 @@ fun LoginScreen(navController: NavHostController) {
     val username = remember { mutableStateOf(TextFieldValue()) }
     val password = remember { mutableStateOf(TextFieldValue()) }
 
-    Text(text = "Login", style = TextStyle(fontSize = 40.sp, fontFamily = FontFamily.Cursive))
+    Text(text = "Communicator", style = TextStyle(fontSize = 40.sp))
+    Spacer(modifier = Modifier.size(40.dp))
+    Image(
+      painter = painterResource(id = R.drawable.com_login),
+      contentDescription = "",
+      modifier = Modifier
+        .size(200.dp)
+        .padding(5.dp)
+    )
 
-    Spacer(modifier = Modifier.height(20.dp))
+    Spacer(modifier = Modifier.height(40.dp))
     TextField(
       label = { Text(text = "Username") },
       value = username.value,
@@ -72,10 +80,8 @@ fun LoginScreen(navController: NavHostController) {
     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
       Button(
         onClick = { navController.navigate(Routes.Home.route) },
-        shape = RoundedCornerShape(50.dp),
-        modifier = Modifier
-          .fillMaxWidth()
-          .height(50.dp)
+        shape = RoundedCornerShape(5.dp),
+        modifier = Modifier.fillMaxWidth().height(50.dp)
       ) {
         Text(text = "Login")
       }
