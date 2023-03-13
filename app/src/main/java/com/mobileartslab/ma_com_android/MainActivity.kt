@@ -27,8 +27,13 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = Screens.Splash) {
+
                         composable(route = Screens.Splash) {
                             SplashScreen(navController = navController)
+                        }
+
+                        composable(route = Screens.Login) {
+                            LoginScreen(navController = navController)
                         }
 
                         composable(route = Screens.Dashboard) {
