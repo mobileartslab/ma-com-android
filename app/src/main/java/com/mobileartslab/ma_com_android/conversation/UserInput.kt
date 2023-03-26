@@ -76,8 +76,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.jetchat.FunctionalityNotAvailablePopup
-import com.example.compose.jetchat.R
+import com.mobileartslab.ma_com_android.FunctionalityNotAvailablePopup
+import com.mobileartslab.ma_com_android.R
 
 enum class InputSelector {
     NONE,

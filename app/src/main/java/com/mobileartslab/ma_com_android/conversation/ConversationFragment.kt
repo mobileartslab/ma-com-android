@@ -11,10 +11,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import com.example.compose.jetchat.MainViewModel
-import com.example.compose.jetchat.R
-import com.example.compose.jetchat.data.exampleUiState
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.mobileartslab.ma_com_android.MainViewModel
+import com.mobileartslab.ma_com_android.R
+import com.mobileartslab.ma_com_android.data.exampleUiState
+import com.mobileartslab.ma_com_android.ui.theme.JetchatTheme
 
 class ConversationFragment : Fragment() {
 

@@ -2,7 +2,7 @@ package com.mobileartslab.ma_com_android.conversation
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.toMutableStateList
-import com.example.compose.jetchat.R
+import com.mobileartslab.ma_com_android.R
 
 class ConversationUiState(
     val channelName: String,
