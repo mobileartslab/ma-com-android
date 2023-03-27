@@ -48,13 +48,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.compose.jetchat.FunctionalityNotAvailablePopup
-import com.example.compose.jetchat.R
-import com.example.compose.jetchat.components.AnimatingFabContent
-import com.example.compose.jetchat.components.baselineHeight
-import com.example.compose.jetchat.data.colleagueProfile
-import com.example.compose.jetchat.data.meProfile
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.mobileartslab.ma_com_android.FunctionalityNotAvailablePopup
+import com.mobileartslab.ma_com_android.R
+import com.mobileartslab.ma_com_android.components.AnimatingFabContent
+import com.mobileartslab.ma_com_android.components.baselineHeight
+import com.mobileartslab.ma_com_android.data.colleagueProfile
+import com.mobileartslab.ma_com_android.data.meProfile
+import com.mobileartslab.ma_com_android.ui.theme.JetchatTheme
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable

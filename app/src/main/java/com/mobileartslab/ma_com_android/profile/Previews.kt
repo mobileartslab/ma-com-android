@@ -2,9 +2,9 @@ package com.mobileartslab.ma_com_android.profile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.compose.jetchat.data.colleagueProfile
-import com.example.compose.jetchat.data.meProfile
-import com.example.compose.jetchat.theme.JetchatTheme
+import com.mobileartslab.ma_com_android.data.colleagueProfile
+import com.mobileartslab.ma_com_android.data.meProfile
+import com.mobileartslab.ma_com_android.ui.theme.JetchatTheme
 
 @Preview(widthDp = 340, name = "340 width - Me")
 @Composable

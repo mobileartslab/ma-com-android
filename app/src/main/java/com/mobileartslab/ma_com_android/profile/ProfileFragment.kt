@@ -32,7 +32,7 @@ import com.mobileartslab.ma_com_android.FunctionalityNotAvailablePopup
 import com.mobileartslab.ma_com_android.MainViewModel
 import com.mobileartslab.ma_com_android.R
 import com.mobileartslab.ma_com_android.components.JetchatAppBar
-import com.mobileartslab.ma_com_android.theme.JetchatTheme
+import com.mobileartslab.ma_com_android.ui.theme.JetchatTheme
 
 class ProfileFragment : Fragment() {
 
