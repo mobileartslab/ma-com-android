@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">ma-com-android</string>
+
+    <string name="title_chat">Group Chat</string>
+    <string name="action_unsend_message">Unsend Message</string>
+    <string name="label_today">Today</string>
+    <string name="label_no_messages">No messages to display</string>
+    <string name="hint_send_message">Send a message…</string>
+    <string name="cd_send_from_gallery">Send photo from Gallery</string>
+    <string name="cd_send_from_camera">Send photo from Camera</string>
+    <string name="cd_send_message">Send message</string>
+    <string name="cd_close_conversation">Close Conversation</string>
+    <string name="cd_mention_contact">Mention %s</string>
+    <string name="cd_view_sent_time">View Sent Time</string>
+    <string name="message_with_time">%s. %s</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.mobileartslab.ma_com_android
-
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import com.mobileartslab.ma_com_android.ui.Messaging
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,22 +17,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
+@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun DashBoardScreen(navController: NavController) {
 
-    Column(Modifier.fillMaxSize()) {
-        Text(text = Screens.Dashboard,modifier =
-        Modifier
-            .background(Color.White)
-            .padding(8.dp), fontSize = 28.sp)
-
-        Divider(thickness = 2.dp)
-
-        Text(text = "Hello There,",modifier =
-        Modifier
-            .background(Color.White)
-            .padding(8.dp), fontSize = 24.sp)
-    }
+    Messaging()
 }
 
 @Preview(showBackground = true)
