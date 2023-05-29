@@ -9,10 +9,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -20,6 +22,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,6 +30,30 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.mobileartslab.ma_com_android.ui.theme.Purple40
+
+fun onSubmit(
+  navController: NavHostController,
+  username: MutableState<TextFieldValue>,
+  password: MutableState<TextFieldValue>
+) {
+  if (!validate(username, password)) {
+    return
+  }
+  navController.navigate(Routes.Dashboard.route)
+}
+
+fun validate(
+  username: MutableState<TextFieldValue>,
+  password: MutableState<TextFieldValue>
+) : Boolean {
+  if (username.value.text.isEmpty()) {
+    return false
+  }
+  if (password.value.text.isEmpty()) {
+    return false
+  }
+  return true
+}
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -63,10 +90,21 @@ fun LoginScreen(navController: NavHostController) {
     )
 
     Spacer(modifier = Modifier.height(40.dp))
+
     TextField(
       label = { Text(text = "Username") },
       value = username.value,
-      onValueChange = { username.value = it })
+      onValueChange = { username.value = it }
+    )
+    Row (Modifier.width(280.dp))
+    {
+      Text(
+        modifier = Modifier.padding(start = 2.dp),
+        text = "username required",
+        fontSize = 14.sp,
+        color = Color.Red
+      )
+    }
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
@@ -74,18 +112,34 @@ fun LoginScreen(navController: NavHostController) {
       value = password.value,
       visualTransformation = PasswordVisualTransformation(),
       keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-      onValueChange = { password.value = it })
+      onValueChange = { password.value = it }
+    )
+    Row (Modifier.width(280.dp))
+    {
+      Text(
+        modifier = Modifier.padding(start = 2.dp),
+        text = "password required",
+        fontSize = 14.sp,
+        color = Color.Red
+      )
+    }
 
     Spacer(modifier = Modifier.height(20.dp))
     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
       Button(
-        onClick = { navController.navigate(Routes.Dashboard.route) },
+        onClick = { onSubmit(navController, username, password) },
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier.fillMaxWidth().height(50.dp)
       ) {
         Text(text = "Login")
       }
     }
+    Text(
+      modifier = Modifier.padding(start = 2.dp),
+      text = "Invalid login",
+      fontSize = 14.sp,
+      color = Color.Red
+    )
 
     Spacer(modifier = Modifier.height(20.dp))
     ClickableText(
