@@ -1,5 +1,7 @@
 package com.mobileartslab.ma_com_android
 
+import DataModel
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,6 +33,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.mobileartslab.ma_com_android.ui.theme.Purple40
 import android.util.Log
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,15 +73,38 @@ fun LoginScreen(navController: NavHostController) {
     return isValid.value
   }
 
+  fun login() {
+    var url = "http://localhost:8000/api/public/login/"
+    val retrofit =
+      Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
+    val dataModel = DataModel(username.value.text, password.value.text)
+    val call: Call<DataModel?>? = retrofitAPI.postData(dataModel)
+
+    call!!.enqueue(object : Callback<DataModel?> {
+      override fun onResponse(call: Call<DataModel?>?, response: Response<DataModel?>) {
+        val response = response.body()
+        Log.d("LOG RESPONSE:", response.toString())
+      }
+
+      override fun onFailure(call: Call<DataModel?>?, t: Throwable) {
+        Log.d("LOG ERROR FOUND:", t.message!!)
+      }
+    })
+  }
 
   fun onSubmit() {
-    Log.d("Submit password", password.value.text)
+    Log.d("LOG Submit password", password.value.text)
     if (!validate()) {
       return
     }
-    navController.navigate(Routes.Dashboard.route)
+    // navController.navigate(Routes.Dashboard.route)
+    login()
   }
-
 
   Box(modifier = Modifier.fillMaxSize()) {
     ClickableText(
@@ -97,9 +124,6 @@ fun LoginScreen(navController: NavHostController) {
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
-
-
-
     Text(text = "Communicator", style = TextStyle(fontSize = 40.sp))
     Spacer(modifier = Modifier.size(40.dp))
     Image(
