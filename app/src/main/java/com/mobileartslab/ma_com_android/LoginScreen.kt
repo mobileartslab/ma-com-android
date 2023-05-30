@@ -32,33 +32,37 @@ import androidx.navigation.compose.rememberNavController
 import com.mobileartslab.ma_com_android.ui.theme.Purple40
 import android.util.Log
 
-fun onSubmit(
-  navController: NavHostController,
-  username: MutableState<TextFieldValue>,
-  password: MutableState<TextFieldValue>
-) {
-  Log.d("Submit password", password.value.text)
-  if (!validate(username, password)) {
-    return
-  }
-  navController.navigate(Routes.Dashboard.route)
-}
-
-fun validate(
-  username: MutableState<TextFieldValue>,
-  password: MutableState<TextFieldValue>
-) : Boolean {
-  if (username.value.text.isEmpty()) {
-    return false
-  }
-  if (password.value.text.isEmpty()) {
-    return false
-  }
-  return true
-}
-
 @Composable
 fun LoginScreen(navController: NavHostController) {
+  val username = remember { mutableStateOf(TextFieldValue()) }
+  val password = remember { mutableStateOf(TextFieldValue()) }
+  var isValid: MutableState<Boolean> = remember { mutableStateOf(true) }
+  val usernameError = remember { mutableStateOf("") }
+  val passwordError = remember { mutableStateOf("") }
+  val submitError = remember { mutableStateOf("") }
+
+  fun validate() : Boolean {
+    isValid.value = true
+
+    if (username.value.text.isEmpty()) {
+      usernameError.value = "Username required"
+      isValid.value = false
+    }
+    if (password.value.text.isEmpty()) {
+      passwordError.value = "Password required"
+      isValid.value = false
+    }
+    return isValid.value
+  }
+
+  fun onSubmit() {
+    Log.d("Submit password", password.value.text)
+    if (!validate()) {
+      return
+    }
+    navController.navigate(Routes.Dashboard.route)
+  }
+
   Box(modifier = Modifier.fillMaxSize()) {
     ClickableText(
       text = AnnotatedString("Sign up here"),
@@ -78,11 +82,7 @@ fun LoginScreen(navController: NavHostController) {
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
-    val username = remember { mutableStateOf(TextFieldValue()) }
-    val password = remember { mutableStateOf(TextFieldValue()) }
-    val usernameError = remember { mutableStateOf("") }
-    val passwordError = remember { mutableStateOf("") }
-    val submitError = remember { mutableStateOf("") }
+
 
     Text(text = "Communicator", style = TextStyle(fontSize = 40.sp))
     Spacer(modifier = Modifier.size(40.dp))
@@ -126,7 +126,7 @@ fun LoginScreen(navController: NavHostController) {
     Spacer(modifier = Modifier.height(20.dp))
     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
       Button(
-        onClick = { onSubmit(navController, username, password) },
+        onClick = { onSubmit() },
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier.fillMaxWidth().height(50.dp)
       ) {
