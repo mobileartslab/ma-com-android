@@ -30,12 +30,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.mobileartslab.ma_com_android.ui.theme.Purple40
+import android.util.Log
 
 fun onSubmit(
   navController: NavHostController,
   username: MutableState<TextFieldValue>,
   password: MutableState<TextFieldValue>
 ) {
+  // Log.d("Submit password", password)
   if (!validate(username, password)) {
     return
   }
@@ -78,6 +80,9 @@ fun LoginScreen(navController: NavHostController) {
 
     val username = remember { mutableStateOf(TextFieldValue()) }
     val password = remember { mutableStateOf(TextFieldValue()) }
+    val usernameError = remember { mutableStateOf("") }
+    val passwordError = remember { mutableStateOf("") }
+    val submitError = remember { mutableStateOf("") }
 
     Text(text = "Communicator", style = TextStyle(fontSize = 40.sp))
     Spacer(modifier = Modifier.size(40.dp))
@@ -96,15 +101,12 @@ fun LoginScreen(navController: NavHostController) {
       value = username.value,
       onValueChange = { username.value = it }
     )
-    Row (Modifier.width(280.dp))
-    {
-      Text(
-        modifier = Modifier.padding(start = 2.dp),
-        text = "username required",
-        fontSize = 14.sp,
-        color = Color.Red
-      )
-    }
+    Text(
+      modifier = Modifier.fillMaxWidth(1f).padding(start = 35.dp),
+      text = "username required",
+      fontSize = 14.sp,
+      color = Color.Red
+    )
 
     Spacer(modifier = Modifier.height(20.dp))
     TextField(
@@ -114,15 +116,12 @@ fun LoginScreen(navController: NavHostController) {
       keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
       onValueChange = { password.value = it }
     )
-    Row (Modifier.width(280.dp))
-    {
-      Text(
-        modifier = Modifier.padding(start = 2.dp),
-        text = "password required",
-        fontSize = 14.sp,
-        color = Color.Red
-      )
-    }
+    Text(
+      modifier = Modifier.fillMaxWidth(1f).padding(start = 35.dp),
+      text = "password required",
+      fontSize = 14.sp,
+      color = Color.Red
+    )
 
     Spacer(modifier = Modifier.height(20.dp))
     Box(modifier = Modifier.padding(40.dp, 0.dp, 40.dp, 0.dp)) {
