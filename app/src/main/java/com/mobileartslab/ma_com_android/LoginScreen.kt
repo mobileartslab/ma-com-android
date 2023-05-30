@@ -87,7 +87,7 @@ fun LoginScreen(navController: NavHostController) {
 
     call!!.enqueue(object : Callback<DataModel?> {
       override fun onResponse(call: Call<DataModel?>?, response: Response<DataModel?>) {
-        val response = response.body()
+        //val response = response.body()
         Log.d("LOG RESPONSE:", response.toString())
       }
 
