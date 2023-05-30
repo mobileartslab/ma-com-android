@@ -37,7 +37,7 @@ fun onSubmit(
   username: MutableState<TextFieldValue>,
   password: MutableState<TextFieldValue>
 ) {
-  // Log.d("Submit password", password)
+  Log.d("Submit password", password.value.text)
   if (!validate(username, password)) {
     return
   }
@@ -103,7 +103,7 @@ fun LoginScreen(navController: NavHostController) {
     )
     Text(
       modifier = Modifier.fillMaxWidth(1f).padding(start = 35.dp),
-      text = "username required",
+      text = usernameError.value,
       fontSize = 14.sp,
       color = Color.Red
     )
@@ -118,7 +118,7 @@ fun LoginScreen(navController: NavHostController) {
     )
     Text(
       modifier = Modifier.fillMaxWidth(1f).padding(start = 35.dp),
-      text = "password required",
+      text = passwordError.value,
       fontSize = 14.sp,
       color = Color.Red
     )
@@ -135,7 +135,7 @@ fun LoginScreen(navController: NavHostController) {
     }
     Text(
       modifier = Modifier.padding(start = 2.dp),
-      text = "Invalid login",
+      text = submitError.value,
       fontSize = 14.sp,
       color = Color.Red
     )
