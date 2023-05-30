@@ -41,11 +41,19 @@ fun LoginScreen(navController: NavHostController) {
   val passwordError = remember { mutableStateOf("") }
   val submitError = remember { mutableStateOf("") }
 
+
   fun validate() : Boolean {
     isValid.value = true
+    usernameError.value = ""
+    passwordError.value = ""
+    submitError.value = ""
 
     if (username.value.text.isEmpty()) {
       usernameError.value = "Username required"
+      isValid.value = false
+    }
+    else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(username.value.text).matches()) {
+      usernameError.value = "Invalid email"
       isValid.value = false
     }
     if (password.value.text.isEmpty()) {
@@ -55,6 +63,7 @@ fun LoginScreen(navController: NavHostController) {
     return isValid.value
   }
 
+
   fun onSubmit() {
     Log.d("Submit password", password.value.text)
     if (!validate()) {
@@ -62,6 +71,7 @@ fun LoginScreen(navController: NavHostController) {
     }
     navController.navigate(Routes.Dashboard.route)
   }
+
 
   Box(modifier = Modifier.fillMaxSize()) {
     ClickableText(
