@@ -20,12 +20,11 @@ import androidx.navigation.compose.rememberNavController
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun DashBoardScreen(navController: NavController) {
-
-    Messaging()
+  Messaging()
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DashboardScreenPreview() {
-    DashBoardScreen(navController = rememberNavController())
+  DashBoardScreen(navController = rememberNavController())
 }
