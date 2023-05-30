@@ -82,13 +82,14 @@ fun LoginScreen(navController: NavHostController) {
         .build()
 
     val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
-    val dataModel = DataModel(username.value.text, password.value.text, 0, 0)
+    val dataModel = DataModel(username.value.text, password.value.text, "", "")
     val call: Call<DataModel?>? = retrofitAPI.postData(dataModel)
 
     call!!.enqueue(object : Callback<DataModel?> {
       override fun onResponse(call: Call<DataModel?>?, response: Response<DataModel?>) {
-        val response = response.body()
-        Log.d("LOG RESPONSE:", response.toString())
+        Log.d("LOG RESPONSE:", response.code().toString())
+        Log.d("LOG RESPONSE BODY:", response.body().toString())
+        navController.navigate(Routes.Dashboard.route)
       }
 
       override fun onFailure(call: Call<DataModel?>?, t: Throwable) {
@@ -98,11 +99,9 @@ fun LoginScreen(navController: NavHostController) {
   }
 
   fun onSubmit() {
-    Log.d("LOG Submit password", password.value.text)
     if (!validate()) {
       return
     }
-    // navController.navigate(Routes.Dashboard.route)
     login()
   }
 
