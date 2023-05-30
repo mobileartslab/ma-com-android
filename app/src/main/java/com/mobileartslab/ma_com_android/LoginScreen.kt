@@ -82,12 +82,12 @@ fun LoginScreen(navController: NavHostController) {
         .build()
 
     val retrofitAPI = retrofit.create(RetrofitAPI::class.java)
-    val dataModel = DataModel(username.value.text, password.value.text)
+    val dataModel = DataModel(username.value.text, password.value.text, 0, 0)
     val call: Call<DataModel?>? = retrofitAPI.postData(dataModel)
 
     call!!.enqueue(object : Callback<DataModel?> {
       override fun onResponse(call: Call<DataModel?>?, response: Response<DataModel?>) {
-        //val response = response.body()
+        val response = response.body()
         Log.d("LOG RESPONSE:", response.toString())
       }
 
