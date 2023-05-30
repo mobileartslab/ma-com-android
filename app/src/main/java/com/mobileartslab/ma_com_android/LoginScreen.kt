@@ -74,7 +74,7 @@ fun LoginScreen(navController: NavHostController) {
   }
 
   fun login() {
-    var url = "http://localhost:8000/api/public/login/"
+    var url = "http://192.168.86.29:8000/api/public/"
     val retrofit =
       Retrofit.Builder()
         .baseUrl(url)
